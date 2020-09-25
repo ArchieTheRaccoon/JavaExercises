@@ -6,7 +6,7 @@ public class five {
     public static int neededOperation;
 
     public static void main(String[] Agrs) {
-            float result = 0;
+            float result;
             neededOperation = gettingUserWantedOperation();
             while (neededOperation <= 0 | neededOperation >= 5) {
                 System.out.println("This operation doesn't exist, please type number of an existing operation!");
