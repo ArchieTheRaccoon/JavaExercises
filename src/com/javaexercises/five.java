@@ -1,9 +1,8 @@
 package com.javaexercises;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Five {
+public class five {
     public static int neededOperation;
 
     public static void main(String[] Agrs) {
@@ -31,21 +30,33 @@ public class Five {
         while (true) {
             try {
                 System.out.print("First number: ");
-                return scanner.nextFloat();
-            } catch (InputMismatchException problem) {
-                continue;
+                return Float.parseFloat(scanner.nextLine());
+            } catch (NumberFormatException ignored) {
+                System.out.println("Sorry, you can only input numbers here.");
             }
         }
     }
 
     public static float secondUserNumber() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Second number: ");
-        return scanner.nextFloat();
+        while (true) {
+            try {
+                System.out.print("Second number: ");
+                return Float.parseFloat(scanner.nextLine());
+            } catch (NumberFormatException ignored) {
+                System.out.println("Sorry, you can only input numbers here.");
+            }
+        }
     }
     public static int gettingUserWantedOperation() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("(1)Sum, (2)Subtract, (3)Multiply, (4)Divide\nPut the number of wanted Operation: ");
-        return scanner.nextInt();
+        while (true) {
+            try {
+                System.out.print("(1)Sum, (2)Subtract, (3)Multiply, (4)Divide\nPut the number of wanted Operation: ");
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException ignored) {
+                System.out.println("Sorry, you can only input numbers here.");
+            }
+        }
     }
 }
