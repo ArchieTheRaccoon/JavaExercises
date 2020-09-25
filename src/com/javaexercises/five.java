@@ -22,7 +22,11 @@ public class five {
             } else {
                 result = firstUserNumber() / secondUserNumber();
             }
-            System.out.println("Your result: " + result);
+            if (result < 1_000_000) {
+                System.out.println("Your result: " + result);
+            } else {
+                System.out.println("OMG THIS NUMBER IS TOO HUGE, SENPAI~");
+            }
     }
 
     public static float firstUserNumber() {
