@@ -1,2 +1,2 @@
 # JavaExercises
- The beginning of my way of becoming a programmer~
+ The beginning of my way of becoming a java programmer~
