@@ -1,5 +1,6 @@
 package com.javaexercises;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class five {
@@ -34,9 +35,10 @@ public class five {
         while (true) {
             try {
                 System.out.print("First number: ");
-                return Float.parseFloat(scanner.nextLine());
-            } catch (NumberFormatException ignored) {
+                return scanner.nextFloat();
+            } catch (InputMismatchException ignored) {
                 System.out.println("Sorry, you can only input numbers here.");
+                scanner.next();
             }
         }
     }
@@ -46,9 +48,10 @@ public class five {
         while (true) {
             try {
                 System.out.print("Second number: ");
-                return Float.parseFloat(scanner.nextLine());
-            } catch (NumberFormatException ignored) {
+                return scanner.nextFloat();
+            } catch (InputMismatchException ignored) {
                 System.out.println("Sorry, you can only input numbers here.");
+                scanner.nextFloat();
             }
         }
     }
@@ -57,9 +60,10 @@ public class five {
         while (true) {
             try {
                 System.out.print("(1)Sum, (2)Subtract, (3)Multiply, (4)Divide\nPut the number of wanted Operation: ");
-                return Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException ignored) {
+                return scanner.nextInt();
+            } catch (InputMismatchException ignored) {
                 System.out.println("Sorry, you can only input numbers here.");
+                scanner.next();
             }
         }
     }
