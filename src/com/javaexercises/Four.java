@@ -1,6 +1,6 @@
 package com.javaexercises;
 
-public class four {
+public class Four {
     public static void main(String[] Args) {
         float speedOfLight = 1_080_000_000;
         float distanceBetweenSunAndEarth = 149_600_000;

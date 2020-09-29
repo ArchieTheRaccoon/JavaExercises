@@ -3,10 +3,10 @@ package com.javaexercises;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class five {
+public class Five {
     public static int neededOperation;
 
-    public static void main(String[] Agrs) {
+    public static void main(String[] Args) {
             float result;
             neededOperation = gettingUserWantedOperation();
             while (neededOperation <= 0 | neededOperation >= 5) {

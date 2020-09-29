@@ -1,6 +1,6 @@
 package com.javaexercises;
 
-public class three {
+public class Three {
     public static void main(String[] Args) {
         float lengthOfTriangleA = 3;
         float lengthOfTriangleB = 4;

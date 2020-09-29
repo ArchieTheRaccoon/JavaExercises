@@ -1,6 +1,6 @@
 package com.javaexercises;
 
-public class one {
+public class One {
     public static void main(String[] Args) {
         System.out.println("Welcome to SSI Schaefer IT Solutions GmbH");
     }

@@ -1,6 +1,6 @@
 package com.javaexercises;
 
-public class two {
+public class Two {
     public static void main(String[] Args) {
         float piNumber = (float) Math.PI;
         int firstNumberFromExercise = 4;
