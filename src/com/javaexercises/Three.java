@@ -16,7 +16,7 @@ public class Three {
         if (areaOfTriangle > 0) {
             System.out.println("Area of this Triangle is " + (float)areaOfTriangle + ".");
         } else {
-            System.out.println("The Area for this Triangle does not exist.");
+            System.out.println("The Area for this Triangle cannot be calculated.");
         }
     }
 }
