@@ -4,11 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Five {
-    public static int neededOperation;
 
     public static void main(String[] Args) {
             float result;
-            neededOperation = gettingUserWantedOperation();
+            int neededOperation = gettingUserWantedOperation();
             while (neededOperation <= 0 | neededOperation >= 5) {
                 System.out.println("This operation doesn't exist, please type number of an existing operation!");
                 neededOperation = gettingUserWantedOperation();
@@ -67,4 +66,5 @@ public class Five {
             }
         }
     }
+
 }
