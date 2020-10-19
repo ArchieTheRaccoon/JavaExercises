@@ -7,7 +7,7 @@ public class Twelve {
         Twelve thisClass = new Twelve();
         thisClass.createTwoStringsAndCompare();
     }
-    
+
     public void createTwoStringsAndCompare() {
         Twelve thisClass = new Twelve();
         StringBuilder firstString = thisClass.getString();
