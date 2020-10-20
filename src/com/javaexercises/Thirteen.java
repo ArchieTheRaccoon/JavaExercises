@@ -17,5 +17,13 @@ public class Thirteen {
 
     System.out.println("The size of the class is: " + classmates.size());
 
+    List<String> lastFiveClassmates = new ArrayList<String>();
+
+    for (int i = (classmates.size() - 1); i > ((classmates.size() - 1) - 5); i--) {
+        lastFiveClassmates.add(classmates.get(i));
+    }
+
+    Collections.shuffle(lastFiveClassmates);
+    
   }
 }
