@@ -40,5 +40,7 @@ public class Thirteen {
     }
     boolean gotServedCheck = (howManyDifferences == 0);
     System.out.println("Everyone got served: " + gotServedCheck);
+
+    
   }
 }
