@@ -41,6 +41,21 @@ public class Thirteen {
     boolean gotServedCheck = (howManyDifferences == 0);
     System.out.println("Everyone got served: " + gotServedCheck);
 
-    
+    List<String> dublicatedNames = new ArrayList<String>();
+    int howManyCopys = 0;
+
+    for (int i = 0; i < classmates.size(); i++) {
+      for (String classmate : classmates) {
+        if (classmates.get(i).equals(classmate)) {
+          howManyCopys++;
+          if (howManyCopys == 2 && !dublicatedNames.contains(classmates.get(i))) {
+            dublicatedNames.add(classmates.get(i));
+          }
+        }
+      }
+      howManyCopys = 0;
+    }
+
+    System.out.println("Dublicated names: " + dublicatedNames);
   }
 }
