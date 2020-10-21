@@ -17,13 +17,27 @@ public class Thirteen {
 
     System.out.println("The size of the class is: " + classmates.size());
 
-    List<String> lastFiveClassmates = new ArrayList<String>();
+    List<String> whoWantPretzel = new ArrayList<String>();
+    List<String> gotServed = new ArrayList<String>();
 
     for (int i = (classmates.size() - 1); i > ((classmates.size() - 1) - 5); i--) {
-        lastFiveClassmates.add(classmates.get(i));
+      whoWantPretzel.add(classmates.get(i));
     }
 
-    Collections.shuffle(lastFiveClassmates);
-    
+    Collections.shuffle(whoWantPretzel);
+
+    for (int i = 0; i < 5; i++) {
+      System.out.println(whoWantPretzel.get(i) + " is next on the line.");
+      gotServed.add(whoWantPretzel.get(i));
+    }
+
+    int howManyDifferences = 0;
+
+    for (int i = 0; i < 5; i++) {
+      if (!whoWantPretzel.get(i).equals(gotServed.get(i))) {
+        howManyDifferences++;
+      }
+    }
+    boolean gotServedCheck = (howManyDifferences == 0);
   }
 }
