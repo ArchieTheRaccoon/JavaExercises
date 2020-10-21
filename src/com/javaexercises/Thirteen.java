@@ -66,6 +66,7 @@ public class Thirteen {
     System.out.println("Jinx's number: " + phoneBook.get("Jinx"));
     System.out.println("Leona's number: " + phoneBook.get("Leona"));
   }
+
   public StringBuilder getRandomPhoneNumber() {
     StringBuilder phoneNumber = new StringBuilder("+49");
     for (int i = 0; i < 11; i++) {
@@ -73,6 +74,7 @@ public class Thirteen {
     }
     return phoneNumber;
   }
+
   public int getRandomNumber() {
     Random random = new Random();
     return random.nextInt(9);
