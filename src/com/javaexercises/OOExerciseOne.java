@@ -10,11 +10,15 @@ public class OOExerciseOne {
   private double sameNenner;
 
   public void scannerAndProcess() {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Zähler: ");
-    this.zaehler = scanner.nextInt();
-    System.out.print("Nenner: ");
-    this.nenner = scanner.nextInt();
+    try {
+      Scanner scanner = new Scanner(System.in);
+      System.out.print("Zähler: ");
+      this.zaehler = scanner.nextInt();
+      System.out.print("Nenner: ");
+      setNenner(scanner.nextInt());
+    } catch (Exception ignored) {
+      System.out.println("Sorry, you can't type this here.");
+    }
 
     boolean isZaehlerBigger = this.zaehler > this.nenner;
     if (isZaehlerBigger) {
@@ -36,6 +40,13 @@ public class OOExerciseOne {
 
   public int getZaehler() {
     return (int) this.zaehler;
+  }
+
+  public void setNenner(double value) {
+    if (value == 0) {
+      value = 1;
+    }
+    this.nenner = value;
   }
 
   public int getNenner() {
@@ -75,11 +86,11 @@ public class OOExerciseOne {
   }
 
   public void printBruch() {
-      System.out.println(getZaehler() + "\n-\n" + getNenner());
+    System.out.println(getZaehler() + "\n-\n" + getNenner());
   }
 
   public void printTwoProcessed() {
-      System.out.println("Processed Bruch: \n" + getSameZaehler() + "\n-\n" + getSameNenner());
+    System.out.println("Processed Bruch: \n" + getSameZaehler() + "\n-\n" + getSameNenner());
   }
 
   public static void main(String[] Args) {
