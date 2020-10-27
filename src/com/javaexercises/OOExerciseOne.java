@@ -58,10 +58,10 @@ public class OOExerciseOne {
     return (int) this.sameNenner;
   }
 
-  public void sumOfTwoAndProcess(int firstZaehler, int firstNenner, int secordZaehler, int secondNenner) {
+  public void sumOfTwoAndProcess(int firstZaehler, int firstNenner, int secondZaehler, int secondNenner) {
     this.sameNenner = firstNenner * secondNenner;
     double sameFirstZaehler = firstZaehler * secondNenner;
-    double sameSecondZaehler = secordZaehler * firstNenner;
+    double sameSecondZaehler = secondZaehler * firstNenner;
     this.sumOfZaehlers = sameFirstZaehler + sameSecondZaehler;
 
     boolean isZaehlerBigger = this.sumOfZaehlers > this.sameNenner;
