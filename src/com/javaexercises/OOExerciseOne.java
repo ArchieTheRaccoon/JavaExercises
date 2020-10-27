@@ -4,10 +4,7 @@ package com.javaexercises;
 import java.util.Scanner;
 
 public class OOExerciseOne {
-  private double zaehler;
-  private double nenner;
-  private double sumOfZaehlers;
-  private double sameNenner;
+  private double zaehler, nenner, sumOfZaehlers, sameNenner;
 
   public void scannerAndProcess() {
     try {
