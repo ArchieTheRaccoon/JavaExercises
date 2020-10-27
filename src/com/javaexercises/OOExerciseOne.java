@@ -3,7 +3,7 @@ package com.javaexercises;
 
 import java.util.Scanner;
 
-public class Sixteen {
+public class OOExerciseOne {
   private double zaehler;
   private double nenner;
   private double sumOfZaehlers;
@@ -83,9 +83,9 @@ public class Sixteen {
   }
 
   public static void main(String[] Args) {
-    Sixteen b1 = new Sixteen();
-    Sixteen b2 = new Sixteen();
-    Sixteen sameShortOperation = new Sixteen();
+    OOExerciseOne b1 = new OOExerciseOne();
+    OOExerciseOne b2 = new OOExerciseOne();
+    OOExerciseOne sameShortOperation = new OOExerciseOne();
 
     b1.scannerAndProcess();
     b1.printBruch();
