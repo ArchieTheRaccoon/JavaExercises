@@ -22,7 +22,7 @@ public class Twelve {
     } else {
       System.out.println("They dont have the same length!");
     }
-    if (firstString == secondString) {
+    if (String.valueOf(firstString).equals(String.valueOf(secondString))) {
       System.out.println("String 1 and String 2 are equal!");
     } else {
       System.out.println("String 1 and String 2 are not equal!");

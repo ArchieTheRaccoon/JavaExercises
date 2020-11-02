@@ -52,6 +52,7 @@ public class Thirteen {
       }
       howManyCopys = 0;
     }
+
     System.out.println("Dublicated names: " + dublicatedNames);
 
     Map<String, String> phoneBook = new HashMap<String, String>();
