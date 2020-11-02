@@ -14,10 +14,14 @@ public class Seven {
       System.out.println(i);
     }
 
-    for (double i = 222; i <= 1111; i++) {
-      if (i / i == i % 2) {
-        System.out.println(i);
+    for ( int input = 222; input <= 1111; input++) {
+      for (int i = 2; i < input; i++) {
+        if (input % i == 0) {
+          input++;
+          i = 2;
+        }
       }
+      System.out.println(input);
     }
 
     for (double i = 222; i <= 1111; i++) {

@@ -4,9 +4,12 @@ package com.javaexercises;
 import java.util.Random;
 
 public class Eleven {
+  private int howManyChars, howManyNumbers;
+
   public static void main(String[] Args) {
     Eleven thisClass = new Eleven();
-    System.out.println(thisClass.getRandomString());
+    System.out.println("Random: " + thisClass.getRandomString());
+    System.out.println("It has " + thisClass.howManyChars + " chars and " + thisClass.howManyNumbers + " numbers.");
   }
 
   public StringBuilder getRandomString() {
@@ -19,10 +22,13 @@ public class Eleven {
     StringBuilder randomLettersAndNumbers = new StringBuilder();
     for (int i = 0; i < thisClass.randomNumber(); i++) {
       boolean trueOrFalse = 0 == thisClass.randomNumberFalseTrue();
+
       if (trueOrFalse) {
         randomLettersAndNumbers.append(alphabetArray[thisClass.randomNumberFromArray(alphabetArray.length)]);
+        howManyChars++;
       } else {
         randomLettersAndNumbers.append(numbersArray[thisClass.randomNumberFromArray(numbersArray.length)]);
+        howManyNumbers++;
       }
     }
     return randomLettersAndNumbers;
