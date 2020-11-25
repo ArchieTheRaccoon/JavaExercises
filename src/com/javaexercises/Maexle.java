@@ -5,6 +5,6 @@ public class Maexle {
 
     public Maexle(int amountOfPlayers) {
         this.amountOfPlayers = amountOfPlayers;
-
+        
     }
 }
