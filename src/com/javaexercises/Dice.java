@@ -18,7 +18,7 @@ public class Dice {
         Dice dice = new Dice(localAmountOfDiceSides);
 
         dice.multipleRoll(localAmountOfDiceSides); // this method rolls the dice as much times as you need it to
-        dice.sum(); // this method gets the sum of numbers from array
+        dice.sum(); // this method gets the sum of numbers in array
         System.out.println("The sum is " + dice.getSum());
     }
 
