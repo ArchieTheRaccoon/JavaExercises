@@ -24,7 +24,7 @@ public class Dice {
 
     public void roll() {
         Random random = new Random();
-        arrayOfNumbersFromDice.add(random.nextInt(amountOfDiceSides));
+        arrayOfNumbersFromDice.add((random.nextInt(amountOfDiceSides) + 1));
     }
 
     public void multipleRoll(int amountOfRoll) {
