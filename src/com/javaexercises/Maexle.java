@@ -1,9 +1,6 @@
 package com.javaexercises;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import java.util.*;
 
 
 public class Maexle {
@@ -26,85 +23,128 @@ public class Maexle {
     public static void main(String[] Args) {
         Maexle maexle = new Maexle(3);
         maexle.initializeNumbers();
-        maexle.play();
+        System.out.println("The winner of this game is " + maexle.play());
+        System.out.println("||||||||||||||||||||||||||||||||||||");
     }
 
     public String play() {
-        List<String> playerList = new ArrayList<String>();
-
-        ////////////////////////////////////////////// Creating a List with Players
-        for (int x = 0; x < amountOfPlayers; x++) {
-            playerList.add("Player " + (x+1));
-        }
-        //////////////////////////////////////////////
-
+        Map<Integer, Integer> amountOfLives = new HashMap<>();
+        Map<Integer, String> mapPlayerList = new HashMap<>();
+        List<Integer> playersAlive = new ArrayList<Integer>();
+        int updatingAmountOfPlayers = amountOfPlayers;
         int PL1dice1 = 0;
         int PL1dice2 = 0;
 
+        int player1numbers = 0;
+
+        for (int x = 0; x < updatingAmountOfPlayers; x++) {
+            amountOfLives.put(x, 3);
+            playersAlive.add(x);
+        }
+
+        for (int x = 0; x < updatingAmountOfPlayers; x++) {
+            mapPlayerList.put(x, "Player " + (x+1));
+        }
+
         if (firstGame) {
-            System.out.println(playerList.get(this.playerID) + " rolls a dice.");
+            System.out.println(mapPlayerList.get(playerID) + " rolls a dice.");
             PL1dice1 = getRolledDice1();
             PL1dice2 = getRolledDice2();
             System.out.println("His number is " + processNumbers(PL1dice1, PL1dice2));
         }
 
-        int player1numbers = processNumbers(PL1dice1, PL1dice2);
+        while (mapPlayerList.size() > 1) {  //the engine of this game?
+            player1numbers = processNumbers(PL1dice1, PL1dice2);
 
-        nextPlayer();
+            nextPlayer();
+            while (!mapPlayerList.containsKey(playerID)) {
+                nextPlayer();
+            }
 
-        System.out.println(playerList.get(this.playerID) + " rolls a dice.");
-        justRollDices();
-        System.out.println("His number is " + processNumbers(dice1.getSum(), dice2.getSum()));
+            System.out.println("--------------------------------");
+            System.out.println(mapPlayerList.get(playerID) + " rolls a dice.");
+            justRollDices();
+            System.out.print("Live count: ");
+            for (int x = 0; amountOfLives.get(playerID) > x; x++) {
+                System.out.print("❤");
+            }
+            System.out.println();
+            System.out.println("His number is " + processNumbers(dice1.getSum(), dice2.getSum()));
+            System.out.println("--------------------------------");
 
-        int player2numbers = processNumbers(dice1.getSum(), dice2.getSum());
+            int player2numbers = processNumbers(dice1.getSum(), dice2.getSum());
 
-        boolean PL2numbersAreBigger = false;
+            boolean PL2numbersAreBigger = isPL2winning(player1numbers, player2numbers);
 
-        if (player1numbers == maexleNumber) {
-            if (player2numbers == maexleNumber) {
-                PL2numbersAreBigger = false;
+            if (PL2numbersAreBigger) {
+                System.out.println(mapPlayerList.get(playerID) + " won this round.");
             } else {
-                PL2numbersAreBigger = false;
+                System.out.println("Current player didn't outbid the last biggest number.");
+                amountOfLives.put(playerID, amountOfLives.get(playerID) - 1);
+
+                if (amountOfLives.get(playerID) < 1) {
+                    mapPlayerList.remove(playerID);
+                }
+            }
+
+            if (mapPlayerList.size() == 1) {
+                System.out.println("||||||||||||||||||||||||||||||||||||");
+
+                int tempCountOfPlayerID = playerID;
+                while (!mapPlayerList.containsKey(tempCountOfPlayerID)) {
+                    tempCountOfPlayerID++;
+                }
+                return mapPlayerList.get(playersAlive.get(tempCountOfPlayerID));
+            }
+
+            PL1dice1 = dice1.getSum();
+            PL1dice2 = dice2.getSum();
+        }
+
+        System.out.println("--------------------------------");
+        return mapPlayerList.get(playerID);
+    }
+
+    public boolean isPL2winning(int player1numbers, int player2numbers) {
+        boolean PL2isWinning = false;
+        if (player1numbers == maexleNumber) { //when both PL1 and PL2 numbers are maexle, PL2 numbers arent bigger
+            if (player2numbers == maexleNumber) {
+                PL2isWinning = false;
+            } else {
+                PL2isWinning = false;
             }
         } else if (pasheNumbers.contains(player1numbers)) { //when PL1Numbers are Pashe
             if (pasheNumbers.contains(player2numbers)) { //when PL2Numbers are Pashe as well
                 if (player2numbers > player1numbers) { //when PL2 Pashe number is bigger than PL1 Pashe numbers
-                    PL2numbersAreBigger = true;
+                    PL2isWinning = true;
                 } else {
-                    PL2numbersAreBigger = false;
+                    PL2isWinning = false;
                 }
 
             } else if (player2numbers == maexleNumber) { //when PL2 numbers are maexle number
-                PL2numbersAreBigger = true;
+                PL2isWinning = true;
             } else { //when everything else
-                PL2numbersAreBigger = false;
+                PL2isWinning = false;
             }
         } else if (normalNumbers.contains(player1numbers)) { //when PL1 numbers are normal numbers
             if (pasheNumbers.contains(player2numbers)) { //when PL2 numbers are pashe numbers
-                PL2numbersAreBigger = true;
+                PL2isWinning = true;
             } else if (player2numbers == maexleNumber) { //when PL2 numbers are maexle number
-                PL2numbersAreBigger = true;
+                PL2isWinning = true;
             } else if (normalNumbers.contains(player2numbers)) { //when PL2 numbers are normal numbers
                 if (player2numbers > player1numbers) { //when PL2 numbers are bigger than PL1 numbers
-                    PL2numbersAreBigger = true;
+                    PL2isWinning = true;
                 } else {
-                    PL2numbersAreBigger = false;
+                    PL2isWinning = false;
                 }
             }
         }
 
         if (player1numbers == player2numbers) {
-            PL2numbersAreBigger = false;
+            PL2isWinning = false;
         }
 
-        if (PL2numbersAreBigger) {
-            System.out.println(playerList.get(this.playerID) + " won this round.");
-        } else {
-            System.out.println(playerList.get(this.playerID - 1) + " won this round.");
-        }
-
-
-        return "Bitch"; // need to change it later
+        return PL2isWinning;
     }
 
     public void nextPlayer() {
