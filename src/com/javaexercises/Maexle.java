@@ -21,7 +21,7 @@ public class Maexle {
     }
 
     public static void main(String[] Args) {
-        Maexle maexle = new Maexle(3);
+        Maexle maexle = new Maexle(10);
         maexle.initializeNumbers();
         System.out.println("The winner of this game is " + maexle.play());
         System.out.println("||||||||||||||||||||||||||||||||||||");
