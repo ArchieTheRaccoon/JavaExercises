@@ -30,7 +30,7 @@ public class Dice {
     public void multipleRoll(int amountOfRoll) {
         Random random = new Random();
         for (int x = 0; x < amountOfRoll; x++) {
-            arrayOfNumbersFromDice.add(random.nextInt(amountOfDiceSides));
+            arrayOfNumbersFromDice.add(random.nextInt(amountOfDiceSides) + 1);
         }
     }
 
