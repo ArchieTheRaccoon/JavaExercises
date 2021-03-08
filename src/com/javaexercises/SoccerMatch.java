@@ -6,10 +6,15 @@ public class SoccerMatch {
     int playTime = 165;
     int stoppageTime = 5;
     int amountOfPlayersPerTeam = 11;
-    int teamID = 0;
-    int playerID = 0;
+
     int howManyTeamsArePlaying;
     boolean areSubstitutesAllowed;
+    int ballLocation;
+
+    int teamID = 0;
+    int playerID = 0;
+    int opponentTeamID = 0;
+    int opponentPlayerID = 0;
 
     Random random = new Random();
 
@@ -33,9 +38,34 @@ public class SoccerMatch {
 
         chooseRandomTeam();
         chooseRandomPlayerFromCurrentTeam(playersList);
+        ballLocation = playerID;
 
-        System.out.println(teamsList.get(teamID));
-        System.out.println(playersList.get(playerID).getNameOfThisPlayer());
+        while (playTime > 0) {
+            int tempRandomizer = random.nextInt(100);
+
+            if (tempRandomizer < 70) {               // 70% chance
+
+                playersList.get(playerID).A1();
+
+            } else if (tempRandomizer < 90) {       // 20% chance
+
+                playersList.get(playerID).A2();
+
+            } else {                                // 10% chance
+
+                playersList.get(playerID).A3();
+
+            }
+
+            playTime -= 1;
+        }
+    }
+
+    public int nextTeam() {
+        if (teamID > howManyTeamsArePlaying) {
+            return 0;
+        }
+        return (teamID + 1);
     }
 
     public void chooseRandomTeam() {
