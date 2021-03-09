@@ -40,13 +40,26 @@ public class SoccerMatch {
         while (playTime > 0) {
 
             int action = firstTeamAction(teamList); // team action
-            boolean tempActionSuccess = random.nextInt(2) == 0;
+//            boolean tempActionSuccess = random.nextInt(2) == 0;
             boolean firstTeamProbabilityTestSuccess = probabilityTest(teamList, teamID, playerID);
 
 
             int opponentsAction = opponentTeamAction(teamList, action); // opponents action
-            boolean tempOpponentActionSuccess = random.nextInt(2) == 0;
+//            boolean tempOpponentActionSuccess = random.nextInt(2) == 0;
             boolean opponentTeamProbabilityTestSuccess = probabilityTest(teamList, opponentTeamID, opponentPlayerID);
+
+
+            if (firstTeamProbabilityTestSuccess) {
+                if (action == 1) {
+                    if (opponentTeamProbabilityTestSuccess) {
+                        if (opponentsAction == 1) {
+                            //
+                        } else if (opponentsAction == 2) {
+                            ballLocation = teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID);
+                        }
+                    }
+                }
+            }
 
             playTime -= 1;
         }
