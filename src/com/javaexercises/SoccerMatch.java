@@ -26,14 +26,12 @@ public class SoccerMatch {
         Map<Integer, String> teamsList = new HashMap<>();
         Map<Integer, Player> playersList = new HashMap<>();
 
-        int tempCounter = 0;
-        for (int x = 0; x < howManyTeamsArePlaying; x++) {
-            teamsList.put(x, "Team " + (x + 1));
+        List<Team> teamList = new ArrayList<>(howManyTeamsArePlaying);
+        List<Player> playerList = new ArrayList<>((amountOfPlayersPerTeam * howManyTeamsArePlaying));
 
-            for (int y = 0; y < amountOfPlayersPerTeam; y++) {
-                playersList.put(tempCounter, new Player(x, "Player " + (tempCounter + 1)));
-                tempCounter += 1;
-            }
+        for (int x = 0; x < howManyTeamsArePlaying; x++) {
+//            teamsList.put(x, "Team " + (x + 1));
+            teamList.add(new Team("Team " + (x + 1), amountOfPlayersPerTeam));
         }
 
         chooseRandomTeam();

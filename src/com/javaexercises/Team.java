@@ -1,0 +1,18 @@
+package com.javaexercises;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Team {
+    private final String name;
+    private final List<Player> players;
+
+    public Team(String name, int playerCount) {
+        this.name = name;
+
+        this.players = new ArrayList<>(playerCount);
+        for (int x = 0; x < playerCount; x++) {
+            this.players.add(new Player(this, "Player " + (x + 1)));
+        }
+    }
+}

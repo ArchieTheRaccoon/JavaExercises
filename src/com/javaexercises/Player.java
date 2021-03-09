@@ -1,11 +1,11 @@
 package com.javaexercises;
 
 public class Player {
-    int teamIdOfThisPlayer;
+    private final Team team;
     String nameOfThisPlayer;
 
-    public Player(int teamIdOfThisPlayer, String nameOfThisPlayer) {
-        this.teamIdOfThisPlayer = teamIdOfThisPlayer;
+    public Player(Team team, String nameOfThisPlayer) {
+        this.team = team;
         this.nameOfThisPlayer = nameOfThisPlayer;
     }
 
@@ -42,6 +42,11 @@ public class Player {
     }
 
     //----------------------------------------------------------------------
+
+
+    public Team getTeam() {
+        return team;
+    }
 
     public int getTeamIdOfThisPlayer() {
         return teamIdOfThisPlayer;
