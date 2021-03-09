@@ -9,7 +9,7 @@ public class SoccerMatch {
 
     int howManyTeamsArePlaying;
     boolean areSubstitutesAllowed;
-    int ballLocation;
+    Player ballLocation;
 
     int teamID = 0;
     int playerID = 0;
@@ -22,63 +22,98 @@ public class SoccerMatch {
         howManyTeamsArePlaying = 2;
         areSubstitutesAllowed = false;
 
-
-        Map<Integer, String> teamsList = new HashMap<>();
-        Map<Integer, Player> playersList = new HashMap<>();
-
         List<Team> teamList = new ArrayList<>(howManyTeamsArePlaying);
         List<Player> playerList = new ArrayList<>((amountOfPlayersPerTeam * howManyTeamsArePlaying));
 
         for (int x = 0; x < howManyTeamsArePlaying; x++) {
-//            teamsList.put(x, "Team " + (x + 1));
             teamList.add(new Team("Team " + (x + 1), amountOfPlayersPerTeam));
         }
 
-        chooseRandomTeam();
-        chooseRandomPlayerFromCurrentTeam(playersList);
-        ballLocation = playerID;
+        teamID = chooseRandomTeam(teamList);
+        playerID = chooseRandomPlayerFromTeam(teamList.get(teamID));
+        ballLocation = teamList.get(teamID).getPlayers().get(playerID);
+
+        opponentTeamID = nextTeam();
+        opponentPlayerID = chooseRandomPlayerFromTeam(teamList.get(nextTeam()));
+
 
         while (playTime > 0) {
             int tempRandomizer = random.nextInt(100);
 
-            if (tempRandomizer < 70) {               // 70% chance
+            int action = firstTeamAction(teamList);
 
-                playersList.get(playerID).A1();
+            boolean tempActionSuccess = random.nextInt(2) == 0;
 
-            } else if (tempRandomizer < 90) {       // 20% chance
 
-                playersList.get(playerID).A2();
+            int opponentsAction = opponentTeamAction(teamList, action);
 
-            } else {                                // 10% chance
+            // opponents action
 
-                playersList.get(playerID).A3();
 
-            }
+            boolean tempOpponentActionSuccess = random.nextInt(2) == 0;
+
+
 
             playTime -= 1;
         }
     }
 
+    public int firstTeamAction(List<Team> teamList) {
+        int tempRandomizer = random.nextInt(100);
+
+        if (tempRandomizer < 70) {               // 70% chance
+
+            return teamList.get(teamID).getPlayers().get(playerID).A2();
+
+        } else if (tempRandomizer < 90) {       // 20% chance
+
+            return teamList.get(teamID).getPlayers().get(playerID).A3();
+
+        } else {                                // 10% chance
+
+            return teamList.get(teamID).getPlayers().get(playerID).A1();
+
+        }
+    }
+
+    public int opponentTeamAction(List<Team> teamList, int action) {
+
+        if (action == 1) {
+
+            int tempRandom = random.nextInt(2);
+
+            if (tempRandom == 0) {
+                return teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID).B1a();
+            } else {
+                return teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID).B1b();
+            }
+
+
+        } else if (action == 2) {
+
+            return teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID).B2();
+
+        } else {
+
+            return teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID).B3();
+
+        }
+
+    }
+
     public int nextTeam() {
-        if (teamID > howManyTeamsArePlaying) {
+        if (teamID >= (howManyTeamsArePlaying - 1)) {
             return 0;
         }
         return (teamID + 1);
     }
 
-    public void chooseRandomTeam() {
-        teamID = random.nextInt(howManyTeamsArePlaying);
+    public int chooseRandomTeam(List<Team> teamList) {
+        return random.nextInt(teamList.size());
     }
 
-    public void chooseRandomPlayerFromCurrentTeam(Map<Integer, Player> playersList) {
-        int tempIDForPlayer;
-
-        do {
-            tempIDForPlayer = random.nextInt(playersList.size());
-
-        } while ((playersList.get(tempIDForPlayer).getTeamIdOfThisPlayer() != teamID));
-
-        playerID = tempIDForPlayer;
+    public int chooseRandomPlayerFromTeam(Team team) {
+        return random.nextInt(team.getPlayers().size());
     }
 
     public static void main(String[] Args) {

@@ -15,4 +15,14 @@ public class Team {
             this.players.add(new Player(this, "Player " + (x + 1)));
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+
 }
