@@ -38,24 +38,24 @@ public class SoccerMatch {
 
 
         while (playTime > 0) {
-            int tempRandomizer = random.nextInt(100);
 
-            int action = firstTeamAction(teamList);
-
+            int action = firstTeamAction(teamList); // team action
             boolean tempActionSuccess = random.nextInt(2) == 0;
+            boolean firstTeamProbabilityTestSuccess = probabilityTest(teamList, teamID, playerID);
 
 
-            int opponentsAction = opponentTeamAction(teamList, action);
-
-            // opponents action
-
-
+            int opponentsAction = opponentTeamAction(teamList, action); // opponents action
             boolean tempOpponentActionSuccess = random.nextInt(2) == 0;
-
-
+            boolean opponentTeamProbabilityTestSuccess = probabilityTest(teamList, opponentTeamID, opponentPlayerID);
 
             playTime -= 1;
         }
+    }
+
+    public boolean probabilityTest(List<Team> teamList, int methodTeamID, int methodPlayerID) {
+        int tempRandom = random.nextInt(100);
+
+        return teamList.get(methodTeamID).getPlayers().get(methodPlayerID).getPercentageChance() < tempRandom;
     }
 
     public int firstTeamAction(List<Team> teamList) {
