@@ -7,6 +7,7 @@ public class Team {
     private final String name;
     private final List<Player> players;
     private int goalCounter = 0;
+    private int luckCounter = 0;
 
     public Team(String name, int playerCount) {
         this.name = name;
@@ -36,5 +37,21 @@ public class Team {
 
     public void plusOneGoal() {
         this.goalCounter += 1;
+    }
+
+    public int getLuckCounter() {
+        return luckCounter;
+    }
+
+    public void setLuckCounter(int luckCounter) {
+        this.luckCounter = luckCounter;
+    }
+
+    public void plusLuckCounter() {
+        luckCounter += 1;
+    }
+
+    public void resetLuckCounter() {
+        luckCounter = 0;
     }
 }
