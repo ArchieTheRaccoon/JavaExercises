@@ -5,8 +5,7 @@ import java.util.*;
 public class SoccerMatch {
     int playTime = 165;
     int stoppageTime = 5;
-    int amountOfPlayersPerTeam = 11;
-
+    int amountOfPlayersPerTeam;
     int howManyTeamsArePlaying;
     boolean areSubstitutesAllowed;
     Player ballLocation;
@@ -18,12 +17,14 @@ public class SoccerMatch {
 
     Random random = new Random();
 
-    public void play() {
-        howManyTeamsArePlaying = 2;
-        areSubstitutesAllowed = false;
+    public SoccerMatch(int howManyTeamsArePlaying, int amountOfPlayersPerTeam, boolean areSubstitutesAllowed) {
+        this.howManyTeamsArePlaying = howManyTeamsArePlaying;
+        this.amountOfPlayersPerTeam = amountOfPlayersPerTeam;
+        this.areSubstitutesAllowed = areSubstitutesAllowed;
+    }
 
+    public void play() {
         List<Team> teamList = new ArrayList<>(howManyTeamsArePlaying);
-        List<Player> playerList = new ArrayList<>((amountOfPlayersPerTeam * howManyTeamsArePlaying));
 
         for (int x = 0; x < howManyTeamsArePlaying; x++) {
             teamList.add(new Team("Team " + (x + 1), amountOfPlayersPerTeam));
@@ -40,28 +41,22 @@ public class SoccerMatch {
         while (playTime > 0) {
 
             int action = firstTeamAction(teamList); // team action
-//            boolean tempActionSuccess = random.nextInt(2) == 0;
-//            boolean firstTeamProbabilityTestSuccess = probabilityTest(teamList, teamID, playerID);
-
-
-
-            int opponentsAction = opponentTeamAction(teamList, action); // opponents action
 
             if (action == 1) {
                 if (probabilityTest(teamList, teamID, playerID, true)) {
                     if (probabilityTest(teamList, opponentTeamID, opponentPlayerID, false)) {
-                       if (opponentsAction == 2) {
-                           ballLocation = teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID);
-                       }
+                       ballLocation = teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID);
                     } else {
-                        teamList.get(teamID).plusOneGoal();
-                        ballLocation = teamList.get(opponentTeamID).getPlayers().get(chooseRandomPlayerFromTeam(teamList.get(opponentTeamID), -1));
+                        if (probabilityTest(teamList, opponentTeamID, teamList.get(opponentTeamID).getPlayerID(teamList.get(opponentTeamID).getGoalkeeper()), false)) {
+                            ballLocation = teamList.get(opponentTeamID).getPlayers().get(teamList.get(opponentTeamID).getPlayerID(teamList.get(opponentTeamID).getGoalkeeper()));
+                        } else {
+                            teamList.get(teamID).plusOneGoal();
+                            ballLocation = teamList.get(opponentTeamID).getPlayers().get(chooseRandomPlayerFromTeam(teamList.get(opponentTeamID), -1));
+                        }
                     }
                 } else {
                     if (probabilityTest(teamList, opponentTeamID, opponentPlayerID, false)) {
-                        if (opponentsAction == 2) {
-                            ballLocation = teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID);
-                        }
+                        ballLocation = teamList.get(opponentTeamID).getPlayers().get(opponentPlayerID);
                     }
                 }
             } else if (action == 2) {
@@ -203,7 +198,7 @@ public class SoccerMatch {
     }
 
     public static void main(String[] Args) {
-        SoccerMatch sm = new SoccerMatch();
+        SoccerMatch sm = new SoccerMatch(2, 11, false);
         sm.play();
     }
 }

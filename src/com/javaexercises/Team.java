@@ -12,10 +12,28 @@ public class Team {
     public Team(String name, int playerCount) {
         this.name = name;
 
+        int tempCount = 0;
         this.players = new ArrayList<>(playerCount);
-        for (int x = 0; x < playerCount; x++) {
-            this.players.add(new Player(this, "Player " + (x + 1)));
+        for (int x = 0; x < (playerCount - 1); x++) {
+            this.players.add(new Player(this, "Player " + (x + 1), false));
+            tempCount = x;
         }
+        this.players.add(new Player(this, "Player " + (tempCount + 1), true));
+
+    }
+
+    public int getPlayerID(Player player) {
+        return players.indexOf(player);
+    }
+
+    public Player getGoalkeeper() {
+        int tempCount = 0;
+
+        do {
+            tempCount += 1;
+        } while (!players.get(tempCount).isGoalkeeper());
+
+        return players.get(tempCount);
     }
 
     public String getName() {

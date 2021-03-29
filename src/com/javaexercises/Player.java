@@ -6,13 +6,19 @@ public class Player {
     private final Team team;
     private final String nameOfThisPlayer;
     private final int percentageChance;
+    private final boolean isGoalkeeper;
     Random random = new Random();
 
 
-    public Player(Team team, String nameOfThisPlayer) {
+    public Player(Team team, String nameOfThisPlayer, boolean isGoalkeeper) {
         this.team = team;
         this.nameOfThisPlayer = nameOfThisPlayer;
+        this.isGoalkeeper = isGoalkeeper;
         this.percentageChance = random.nextInt((50 - 25) + 1) + 25;
+    }
+
+    public boolean isGoalkeeper() {
+        return isGoalkeeper;
     }
 
     //---------------------------------------------------------------------
