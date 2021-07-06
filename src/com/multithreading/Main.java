@@ -1,7 +1,5 @@
 package com.multithreading;
 
-import javax.swing.plaf.TableHeaderUI;
-
 public class Main
 {
     private static boolean threadOneFinishedFirst = false;
